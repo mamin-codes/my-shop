@@ -1,0 +1,44 @@
+[
+  {
+    "id": 1,
+    "name": "Eggs",
+    "items": 154,
+    "discount": 0,
+    "image": "https://maraviyainfotech.com/projects/grabit-tailwind/grabit-tailwind/assets/img/category/c-1.png"
+  },
+  {
+    "id": 2,
+    "name": "Clothes",
+    "items": 320,
+    "discount": 30,
+    "image": "https://maraviyainfotech.com/projects/grabit-tailwind/grabit-tailwind/assets/img/category/c-4.png"
+  },
+  {
+    "id": 3,
+    "name": "Watches",
+    "items": 65,
+    "discount": 0,
+    "image": "https://maraviyainfotech.com/projects/grabit-tailwind/grabit-tailwind/assets/img/product-images/54_1.jpg"
+  },
+  {
+    "id": 4,
+    "name": "Dresses",
+    "items": 548,
+    "discount": 15,
+    "image": "https://maraviyainfotech.com/projects/grabit-tailwind/grabit-tailwind/assets/img/category/c-1.png"
+  },
+  {
+    "id": 5,
+    "name": "Glasses",
+    "items": 48,
+    "discount": 10,
+    "image": "https://maraviyainfotech.com/projects/grabit-tailwind/grabit-tailwind/assets/img/category/c-4.png"
+  },
+  {
+    "id": 6,
+    "name": "Cosmatics",
+    "items": 59,
+    "discount": 0,
+    "image": "https://maraviyainfotech.com/projects/grabit-tailwind/grabit-tailwind/assets/img/product-images/54_1.jpg"
+  }
+]

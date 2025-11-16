@@ -1,0 +1,53 @@
+@import "tailwindcss";
+@plugin "daisyui";
+
+
+
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+*{
+     font-family: "Poppins", sans-serif;
+}
+
+.cp{
+    color: #5CAF90;
+}
+
+.bcp{
+    background-color: #5CAF90;
+}
+
+.ct{
+    color: #4B5966;
+}
+
+.ts{
+    color: #4B5966;
+    font-size: 14px;
+}
+/* Global fix for horizontal scroll */
+html, body, #root {
+  max-width: 100% !important;
+  width: 100% !important;
+  overflow-x: hidden !important;
+}
+
+* {
+  box-sizing: border-box;
+}
+/* Ensure proper stacking context */
+.navbar-dropdowns {
+  z-index: 9999 !important;
+}
+
+.hero-section {
+  z-index: 1 !important;
+}
+
+/* Or target specific classes */
+.relative.z-50 { /* Navbar */
+  z-index: 50;
+}
+
+.hero-section { /* Hero */
+  z-index: 10;
+}
