@@ -3,11 +3,22 @@ import SectionHeading from '../../../../Components/Shared/SectionHeading';
 import useData from '../../../../Hooks/useData';
 import ProductCart from '../../../../Components/Shared/ProductCart';
 import { TbCategory, TbGridDots } from 'react-icons/tb';
-import { FaArrowRight, FaFire } from 'react-icons/fa';
-import { Link } from 'react-router'; // Fixed import
+import { FaArrowRight, FaFire, FaShoppingCart } from 'react-icons/fa';
+import { Link } from 'react-router';
 
 const PopularProducts = () => {
-    const { category, products } = useData();
+    const { 
+        category, 
+        products, 
+        cart, 
+        addToCart, 
+        removeFromCart, 
+        isInCart, 
+        getCartTotalItems,
+        getItemQuantity,
+        updateQuantity 
+    } = useData();
+    
     const [categoryId, setCategoryId] = useState(null);
     const [activeFilter, setActiveFilter] = useState('all');
 
@@ -26,7 +37,7 @@ const PopularProducts = () => {
     return (
         <div className="w-full px-4 sm:px-6 lg:px-8 py-8 sm:py-12 lg:py-16 bg-gray-50 rounded-3xl my-5 sm:my-10 relative overflow-x-hidden">
 
-            {/* FIXED: Background Decorative Elements - No negative translations */}
+            {/* Background Decorative Elements */}
             <div className="absolute inset-0 overflow-hidden pointer-events-none">
                 <div className="absolute left-0 top-0 w-48 h-48 sm:w-72 sm:h-72 bg-gradient-to-r from-green-500/10 to-blue-500/10 rounded-full blur-3xl opacity-50"></div>
                 <div className="absolute right-0 bottom-0 w-64 h-64 sm:w-96 sm:h-96 bg-gradient-to-r from-purple-500/10 to-pink-500/10 rounded-full blur-3xl opacity-50"></div>
@@ -40,6 +51,16 @@ const PopularProducts = () => {
                         colorHeading={"Products"}
                         discription={"Shop online for new arrivals and get free shipping!"}
                     />
+                    
+                    {/* Cart Summary */}
+                    <div className="flex items-center gap-4 mt-4">
+                        <div className="flex items-center gap-2 bg-white px-3 py-2 rounded-lg shadow-sm border border-gray-200">
+                            <FaShoppingCart className="text-green-600 text-sm" />
+                            <span className="text-sm font-medium text-gray-700">
+                                {getCartTotalItems()} items in cart
+                            </span>
+                        </div>
+                    </div>
                 </div>
 
                 {/* Category Filters */}
@@ -70,14 +91,21 @@ const PopularProducts = () => {
             {/* Products Grid */}
             <div className="relative z-10 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 xl:grid-cols-5 gap-4 sm:gap-6 mb-8 sm:mb-12">
                 {filterProducts
-                    .sort((a, b) => b.rating - a.rating)
+                    .sort((a, b) => (b.rating || b.ratings) - (a.rating || a.ratings))
                     .slice(0, 10)
                     .map((product, index) => (
                         <div
                             key={product.id}
                             className="transform hover:scale-105 transition-transform duration-500"
                         >
-                            <ProductCart product={product} />
+                            <ProductCart 
+                                product={product} 
+                                addToCart={addToCart}
+                                isInCart={isInCart}
+                                getItemQuantity={getItemQuantity}
+                                updateQuantity={updateQuantity}
+                                removeFromCart={removeFromCart}
+                            />
                         </div>
                     ))
                 }

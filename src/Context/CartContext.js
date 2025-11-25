@@ -1,24 +1,20 @@
-import { useEffect, useState } from 'react';
+import React, { createContext, useContext, useState, useEffect } from 'react';
 
-const useData = () => {
-    const [category, setCategory] = useState([]);
-    const [products, setProducts] = useState([]);
+const CartContext = createContext();
+
+export const CartProvider = ({ children }) => {
     const [cart, setCart] = useState([]);
-    const [notification, setNotification] = useState({ show: false, message: '', type: '' });
 
-    // Show notification popup
-    const showNotification = (message, type = 'success') => {
-        setNotification({ show: true, message, type });
-        setTimeout(() => {
-            setNotification({ show: false, message: '', type: '' });
-        }, 3000);
-    };
-
-    // Load data from localStorage on component mount
+    // Load cart from localStorage on component mount
     useEffect(() => {
         const savedCart = localStorage.getItem('shoppingCart');
         if (savedCart) {
-            setCart(JSON.parse(savedCart));
+            try {
+                setCart(JSON.parse(savedCart));
+            } catch (error) {
+                console.error('Error loading cart:', error);
+                setCart([]);
+            }
         }
     }, []);
 
@@ -27,46 +23,33 @@ const useData = () => {
         localStorage.setItem('shoppingCart', JSON.stringify(cart));
     }, [cart]);
 
-    // Fetch category data
-    useEffect(() => {
-        fetch("/Category.json")
-            .then(res => res.json())
-            .then(data => setCategory(data))
-            .catch(error => console.error('Error loading categories:', error));
-    }, []);
-
-    // Fetch products data
-    useEffect(() => {
-        fetch("/Products.json")
-            .then(res => res.json())
-            .then(data => setProducts(data))
-            .catch(error => console.error('Error loading products:', error));
-    }, []);
-
     // Add to cart function
     const addToCart = (product) => {
         const existingItem = cart.find(item => item.id === product.id);
         
         if (existingItem) {
-            showNotification('Item already in cart!', 'info');
-            return { success: false, message: 'Item already in cart' };
+            // If item exists, increase quantity
+            setCart(prevCart => 
+                prevCart.map(item =>
+                    item.id === product.id
+                        ? { ...item, quantity: item.quantity + 1 }
+                        : item
+                )
+            );
+        } else {
+            // If new item, add to cart
+            setCart(prevCart => [...prevCart, { 
+                ...product, 
+                quantity: 1,
+                addedAt: new Date().toISOString()
+            }]);
         }
-
-        const productWithDetails = {
-            ...product,
-            quantity: 1,
-            addedAt: new Date().toISOString()
-        };
-
-        setCart(prevCart => [...prevCart, productWithDetails]);
-        showNotification('Added to cart successfully!', 'success');
         return { success: true, message: 'Added to cart' };
     };
 
     // Remove from cart function
     const removeFromCart = (productId) => {
         setCart(prevCart => prevCart.filter(item => item.id !== productId));
-        showNotification('Item removed from cart!', 'error');
         return { success: true, message: 'Removed from cart' };
     };
 
@@ -87,7 +70,6 @@ const useData = () => {
     // Clear entire cart
     const clearCart = () => {
         setCart([]);
-        showNotification('Cart cleared!', 'info');
     };
 
     // Check if product is in cart
@@ -111,11 +93,8 @@ const useData = () => {
         return item ? item.quantity : 0;
     };
 
-    return {
-        category,
-        products,
+    const value = {
         cart,
-        notification,
         addToCart,
         removeFromCart,
         updateQuantity,
@@ -125,6 +104,19 @@ const useData = () => {
         getCartTotalPrice,
         getItemQuantity
     };
+
+    return (
+        <CartContext.Provider value={value}>
+            {children}
+        </CartContext.Provider>
+    );
 };
 
-export default useData;
+// Custom hook to use cart context
+export const useCart = () => {
+    const context = useContext(CartContext);
+    if (!context) {
+        throw new Error('useCart must be used within a CartProvider');
+    }
+    return context;
+};

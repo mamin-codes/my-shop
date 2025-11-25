@@ -1,230 +1,263 @@
 import React from 'react';
-import { FaShippingFast, FaHeadset, FaExchangeAlt, FaShieldAlt, FaCheck, FaUsers, FaLeaf, FaHome, FaStar } from 'react-icons/fa';
-import { GiTeamIdea } from 'react-icons/gi';
+import { FaShippingFast, FaHeadset, FaExchangeAlt, FaShieldAlt, FaCheck, FaUsers, FaShoppingBag, FaStar, FaTags, FaSprayCan, FaHome, FaUtensils, FaAward } from 'react-icons/fa';
 
 const AboutSection = () => {
   const services = [
     {
       title: "Free Shipping",
-      description: "Enjoy complimentary shipping on all orders across the United States or for international orders above $200",
-      icon: <FaShippingFast className="w-8 h-8" />
+      description: "Free shipping on orders above $50",
+      icon: <FaShippingFast className="w-5 h-5 sm:w-6 sm:h-6" />,
+      color: "from-blue-500 to-cyan-500"
     },
     {
-      title: "24x7 Support",
-      description: "Our dedicated customer support team is available round the clock, 365 days a year to assist you",
-      icon: <FaHeadset className="w-8 h-8" />
+      title: "24/7 Support",
+      description: "Dedicated customer support",
+      icon: <FaHeadset className="w-5 h-5 sm:w-6 sm:h-6" />,
+      color: "from-purple-500 to-pink-500"
     },
     {
-      title: "30 Days Return",
-      description: "Not satisfied? We offer hassle-free returns and exchanges within 30 days of purchase",
-      icon: <FaExchangeAlt className="w-8 h-8" />
+      title: "Easy Returns",
+      description: "30-day return policy",
+      icon: <FaExchangeAlt className="w-5 h-5 sm:w-6 sm:h-6" />,
+      color: "from-green-500 to-emerald-500"
     },
     {
-      title: "Payment Secure",
-      description: "Shop with confidence using our bank-grade encrypted payment system available 24/7",
-      icon: <FaShieldAlt className="w-8 h-8" />
+      title: "Secure Payment",
+      description: "Bank-level security",
+      icon: <FaShieldAlt className="w-5 h-5 sm:w-6 sm:h-6" />,
+      color: "from-orange-500 to-red-500"
     }
   ];
 
   const stats = [
-    { number: "10,000+", label: "Happy Customers", icon: <FaUsers className="w-6 h-6" /> },
-    { number: "500+", label: "Quality Products", icon: <FaStar className="w-6 h-6" /> },
-    { number: "15+", label: "Years Experience", icon: <FaHome className="w-6 h-6" /> }
+    { number: "10K+", label: "Happy Customers", icon: <FaUsers className="w-4 h-4 sm:w-5 sm:h-5" /> },
+    { number: "150+", label: "Premium Products", icon: <FaShoppingBag className="w-4 h-4 sm:w-5 sm:h-5" /> },
+    { number: "5", label: "Categories", icon: <FaTags className="w-4 h-4 sm:w-5 sm:h-5" /> },
+    { number: "50%", label: "Max Discount", icon: <FaStar className="w-4 h-4 sm:w-5 sm:h-5" /> }
   ];
 
   const values = [
     {
-      title: "Quality Guaranteed",
-      description: "Every product undergoes rigorous quality checks to ensure it meets our high standards",
-      icon: <FaCheck className="w-6 h-6" />
+      title: "Premium Quality",
+      description: "Carefully curated and quality-checked products",
+      icon: <FaCheck className="w-4 h-4 sm:w-5 sm:h-5" />
     },
     {
       title: "Customer First",
-      description: "Your satisfaction is our priority. We listen, adapt, and grow with our community",
-      icon: <FaUsers className="w-6 h-6" />
+      description: "Your satisfaction drives everything we do",
+      icon: <FaUsers className="w-4 h-4 sm:w-5 sm:h-5" />
     },
     {
-      title: "Sustainable Growth",
-      description: "Committed to ethical sourcing and environmentally responsible business practices",
-      icon: <FaLeaf className="w-6 h-6" />
+      title: "Trusted Brands",
+      description: "Partnering with reputable brands",
+      icon: <FaAward className="w-4 h-4 sm:w-5 sm:h-5" />
     }
   ];
 
+  const productCategories = [
+    { name: "Beauty", icon: <FaTags className="w-3 h-3 sm:w-4 sm:h-4" />, count: "40+", color: "bg-pink-500" },
+    { name: "Fragrances", icon: <FaSprayCan className="w-3 h-3 sm:w-4 sm:h-4" />, count: "40+", color: "bg-purple-500" },
+    { name: "Home Decor", icon: <FaHome className="w-3 h-3 sm:w-4 sm:h-4" />, count: "40+", color: "bg-blue-500" },
+    { name: "Kitchen", icon: <FaUtensils className="w-3 h-3 sm:w-4 sm:h-4" />, count: "40+", color: "bg-orange-500" },
+    { name: "Groceries", icon: <FaShoppingBag className="w-3 h-3 sm:w-4 sm:h-4" />, count: "40+", color: "bg-green-500" }
+  ];
+
   return (
-    <div className="max-w-7xl mx-auto px-4 lg:px-24 py-16 font-sans">
-      {/* Who We Are Section */}
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 mb-20">
-        {/* Left Column - Content */}
-        <div className="space-y-8">
-          <div>
-            <h1 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6">
-              Who We Are?
-            </h1>
-            <div className="space-y-4 text-lg text-gray-700">
-              <p className="font-semibold leading-relaxed">
-                COMMITTED TO DELIVERING EXCELLENCE IN EVERY PRODUCT<br />
-                TRANSFORMING HOMES WITH PREMIUM QUALITY ESSENTIALS
+    <div className="w-full max-w-full px-3 sm:px-4 lg:px-6 py-8 sm:py-12 lg:py-16 mx-auto">
+      {/* Header Section */}
+      <div className="text-center mb-8 sm:mb-12 lg:mb-16">
+        <h1 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-gray-900 mb-3 sm:mb-4">
+          About <span className="bg-gradient-to-r from-purple-600 to-pink-600 bg-clip-text text-transparent">Grabit</span>
+        </h1>
+        <p className="text-base sm:text-lg lg:text-xl text-gray-600 max-w-full lg:max-w-3xl mx-auto leading-relaxed px-2">
+          Your trusted destination for premium beauty products, luxury fragrances, elegant home decor, 
+          and essential kitchen accessories.
+        </p>
+      </div>
+
+      {/* Main Content Section */}
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 sm:gap-8 lg:gap-12 mb-12 sm:mb-16 lg:mb-20">
+        {/* Text Content */}
+        <div className="space-y-4 sm:space-y-6 lg:space-y-8">
+          <div className="bg-white rounded-xl sm:rounded-2xl p-4 sm:p-6 lg:p-8 shadow-lg border border-gray-100">
+            <h2 className="text-xl sm:text-2xl lg:text-3xl font-bold text-gray-900 mb-3 sm:mb-4">
+              Our Story
+            </h2>
+            <div className="space-y-3 sm:space-y-4 text-gray-600 leading-relaxed text-sm sm:text-base">
+              <p>
+                Founded in 2020, <strong>GrabIt</strong> emerged from a simple belief: everyone deserves 
+                access to high-quality, authentic products that enhance daily life.
+              </p>
+              <p>
+                Our team of product experts meticulously selects each item, working directly with 
+                trusted brands and manufacturers to bring you products that combine quality, style, 
+                and exceptional value.
+              </p>
+              <p>
+                What sets us apart is our unwavering commitment to authenticity. Every product is 
+                genuine, properly sourced, and backed by manufacturer warranties.
               </p>
             </div>
           </div>
 
-          <div className="space-y-6 text-gray-600 leading-relaxed">
-            <p>
-              Founded with a passion for quality and customer satisfaction, we are a premier 
-              home essentials provider dedicated to enhancing your living experience. For over 
-              a decade, we've been curating products that combine functionality, style, and 
-              exceptional value.
-            </p>
-            <p>
-              Our journey began with a simple belief: everyone deserves access to high-quality 
-              home products that make daily life more comfortable and enjoyable. This philosophy 
-              continues to drive our product selection and customer service approach today.
-            </p>
-            <p>
-              We meticulously source each item in our collection, working directly with trusted 
-              manufacturers and artisans to ensure every product meets our rigorous standards 
-              for quality, durability, and design excellence.
-            </p>
-            <p>
-              Beyond just selling products, we're building a community of homeowners who value 
-              quality craftsmanship and thoughtful design. Our team of home lifestyle experts 
-              is constantly researching and testing new products to bring you the very best 
-              for your home.
-            </p>
+          {/* Product Categories */}
+          <div className="bg-gradient-to-br from-purple-50 to-pink-50 rounded-xl sm:rounded-2xl p-4 sm:p-6 lg:p-8 border border-purple-100">
+            <h3 className="text-lg sm:text-xl lg:text-2xl font-bold text-gray-900 mb-3 sm:mb-4 lg:mb-6">Our Product Range</h3>
+            <div className="grid grid-cols-2 xs:grid-cols-3 sm:grid-cols-5 gap-2 sm:gap-3 lg:gap-4">
+              {productCategories.map((category, index) => (
+                <div 
+                  key={index}
+                  className="bg-white rounded-lg sm:rounded-xl p-2 sm:p-3 lg:p-4 text-center shadow-md border border-gray-200 hover:shadow-lg transition-all duration-300 hover:scale-105"
+                >
+                  <div className={`w-8 h-8 sm:w-10 sm:h-10 ${category.color} rounded-lg flex items-center justify-center mx-auto mb-1 sm:mb-2`}>
+                    <div className="text-white">
+                      {category.icon}
+                    </div>
+                  </div>
+                  <h4 className="font-semibold text-gray-900 text-xs sm:text-sm mb-1">{category.name}</h4>
+                  <p className="text-purple-600 text-xs font-medium">{category.count}</p>
+                </div>
+              ))}
+            </div>
           </div>
         </div>
 
-        {/* Right Column - Enhanced Image Design */}
-        <div className="flex items-center justify-center">
-          <div className="relative w-full max-w-lg">
-            {/* Main Image Container */}
-            <div className="relative rounded-2xl overflow-hidden shadow-2xl transform hover:scale-105 transition-transform duration-500">
-              <img 
-                src="https://sakib-ecommerce-react-router.netlify.app/assets/about-CArRwjB5.png" 
-                alt="Our Team & Showroom" 
-                className="w-full h-96 object-cover"
-              />
-              {/* Overlay Gradient */}
-              <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent opacity-60"></div>
-              
-              {/* Floating Badge */}
-              <div className="absolute top-6 right-6 bg-green-500 text-white px-4 py-2 rounded-full font-semibold shadow-lg">
-                Since 2008
-              </div>
+        {/* Image Section */}
+        <div className="relative">
+          <div className="bg-gradient-to-br from-purple-500 to-pink-600 rounded-xl sm:rounded-2xl p-6 sm:p-8 lg:p-10 text-white relative overflow-hidden h-full min-h-[300px] sm:min-h-[350px] lg:min-h-[400px] flex items-end">
+            {/* Background Pattern */}
+            <div className="absolute inset-0 opacity-10">
+              <div className="absolute top-0 right-0 w-24 h-24 sm:w-32 sm:h-32 bg-white rounded-full -translate-y-8 sm:-translate-y-16 translate-x-8 sm:translate-x-16"></div>
+              <div className="absolute bottom-0 left-0 w-32 h-32 sm:w-48 sm:h-48 bg-white rounded-full translate-y-12 sm:translate-y-24 -translate-x-12 sm:-translate-x-24"></div>
             </div>
             
-            {/* Floating Stats Card */}
-            <div className="absolute -bottom-6 -left-6 bg-white rounded-xl shadow-2xl p-6 border border-gray-100">
-              <div className="flex items-center gap-4">
-                <div className="bg-green-100 p-3 rounded-full">
-                  <GiTeamIdea className="w-8 h-8 text-green-600" />
-                </div>
-                <div>
-                  <div className="text-2xl font-bold text-gray-900">50+</div>
-                  <div className="text-sm text-gray-600">Expert Team Members</div>
+            {/* Content */}
+            <div className="relative z-10 w-full">
+              <div className="bg-white/20 backdrop-blur-sm rounded-xl sm:rounded-2xl p-4 sm:p-6 border border-white/30">
+                <h3 className="text-lg sm:text-xl lg:text-2xl font-bold mb-2 sm:mb-3">Premium Shopping Experience</h3>
+                <p className="text-white/90 mb-3 sm:mb-4 leading-relaxed text-sm sm:text-base">
+                  Discover curated collections that transform your daily routine into an exceptional experience.
+                </p>
+                
+                {/* Stats Overlay */}
+                <div className="grid grid-cols-2 gap-3 sm:gap-4 mt-4 sm:mt-6">
+                  <div className="text-center">
+                    <div className="text-xl sm:text-2xl lg:text-3xl font-bold">25+</div>
+                    <div className="text-white/80 text-xs sm:text-sm">Brand Partners</div>
+                  </div>
+                  <div className="text-center">
+                    <div className="text-xl sm:text-2xl lg:text-3xl font-bold">4.8★</div>
+                    <div className="text-white/80 text-xs sm:text-sm">Customer Rating</div>
+                  </div>
                 </div>
               </div>
             </div>
 
-            {/* Image Title */}
+            {/* Floating Elements */}
+            <div className="absolute top-4 sm:top-6 left-4 sm:left-6">
+              <div className="bg-yellow-400 text-gray-900 px-2 sm:px-3 py-1 rounded-full text-xs sm:text-sm font-bold shadow-lg">
+                ⭐ Since 2020
+              </div>
+            </div>
             
+            <div className="absolute top-4 sm:top-6 right-4 sm:right-6">
+              <div className="bg-white text-purple-600 px-2 sm:px-3 py-1 rounded-full text-xs sm:text-sm font-bold shadow-lg">
+                🚚 Free Shipping
+              </div>
+            </div>
           </div>
         </div>
       </div>
 
-      {/* Our Services Section */}
-      <div className="bg-gradient-to-br from-gray-50 to-green-50 rounded-3xl p-8 md:p-12 mb-16 border border-green-100">
-        <div className="text-center mb-12">
-          <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
-            Our Commitment to You
+      {/* Services Section */}
+      <div className="mb-12 sm:mb-16 lg:mb-20">
+        <div className="text-center mb-6 sm:mb-8 lg:mb-12">
+          <h2 className="text-xl sm:text-2xl lg:text-3xl font-bold text-gray-900 mb-2 sm:mb-3 lg:mb-4">
+            Why Choose GrabIt?
           </h2>
-          <p className="text-lg text-gray-600 max-w-2xl mx-auto italic">
-            We believe exceptional customer service isn't just a department—it's the foundation of everything we do.
+          <p className="text-gray-600 text-sm sm:text-base lg:text-lg max-w-full lg:max-w-2xl mx-auto px-2">
+            We're committed to providing an exceptional shopping experience from start to finish
           </p>
         </div>
 
-        {/* Services Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+        <div className="grid grid-cols-1 xs:grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4 lg:gap-6">
           {services.map((service, index) => (
             <div 
               key={index}
-              className="bg-white p-8 rounded-2xl shadow-lg border border-gray-100 hover:shadow-2xl transition-all duration-300 text-center group hover:transform hover:-translate-y-2"
+              className="bg-white rounded-xl sm:rounded-2xl p-4 sm:p-5 lg:p-6 shadow-lg border border-gray-100 hover:shadow-xl transition-all duration-300 group"
             >
-              {/* Service Icon */}
-              <div className="w-20 h-20 bg-gradient-to-br from-green-500 to-emerald-600 rounded-2xl flex items-center justify-center mx-auto mb-6 group-hover:scale-110 transition-transform duration-300">
+              <div className={`w-10 h-10 sm:w-12 sm:h-12 bg-gradient-to-r ${service.color} rounded-lg sm:rounded-xl flex items-center justify-center mb-3 sm:mb-4 group-hover:scale-110 transition-transform duration-300`}>
                 <div className="text-white">
                   {service.icon}
                 </div>
               </div>
               
-              <h3 className="text-xl font-bold text-gray-900 mb-4 group-hover:text-green-600 transition-colors duration-300">
+              <h3 className="text-base sm:text-lg lg:text-xl font-bold text-gray-900 mb-2 sm:mb-3 group-hover:text-purple-600 transition-colors duration-300">
                 {service.title}
               </h3>
-              <p className="text-gray-600 leading-relaxed">
+              <p className="text-gray-600 leading-relaxed text-xs sm:text-sm lg:text-base">
                 {service.description}
               </p>
             </div>
           ))}
         </div>
+      </div>
 
-        {/* Additional Service Features */}
-        <div className="mt-16 grid grid-cols-1 md:grid-cols-3 gap-8">
+      {/* Stats Section */}
+      <div className="bg-gradient-to-r from-gray-900 to-purple-900 rounded-xl sm:rounded-2xl p-6 sm:p-8 lg:p-12 mb-12 sm:mb-16 lg:mb-20 text-white">
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-4 sm:gap-6 lg:gap-8">
           {stats.map((stat, index) => (
-            <div key={index} className="bg-white/80 backdrop-blur-sm p-6 rounded-2xl shadow-lg border border-white text-center hover:shadow-xl transition-shadow duration-300">
-              <div className="flex items-center justify-center gap-4 mb-4">
-                <div className="bg-green-100 p-3 rounded-full">
-                  <div className="text-green-600">
-                    {stat.icon}
-                  </div>
+            <div key={index} className="text-center">
+              <div className="w-10 h-10 sm:w-12 sm:h-12 bg-white/20 rounded-lg sm:rounded-xl flex items-center justify-center mx-auto mb-2 sm:mb-3">
+                <div className="text-white">
+                  {stat.icon}
                 </div>
               </div>
-              <div className="text-3xl font-bold text-green-600 mb-2">{stat.number}</div>
-              <div className="text-gray-600 font-medium">{stat.label}</div>
+              <div className="text-xl sm:text-2xl lg:text-3xl font-bold mb-1">{stat.number}</div>
+              <div className="text-gray-300 text-xs sm:text-sm lg:text-base">{stat.label}</div>
             </div>
           ))}
         </div>
       </div>
 
-      {/* Mission & Values Section */}
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-16">
+      {/* Values Section */}
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-4 sm:gap-6 lg:gap-8 mb-12 sm:mb-16 lg:mb-20">
         {values.map((value, index) => (
-          <div key={index} className="text-center p-8 bg-white rounded-2xl shadow-lg border border-gray-100 hover:shadow-xl transition-all duration-300">
-            <div className="w-16 h-16 bg-gradient-to-br from-green-500 to-emerald-600 rounded-2xl flex items-center justify-center mx-auto mb-6">
+          <div key={index} className="bg-white rounded-xl sm:rounded-2xl p-4 sm:p-6 lg:p-8 shadow-lg border border-gray-100 text-center hover:shadow-xl transition-all duration-300">
+            <div className="w-10 h-10 sm:w-12 sm:h-12 bg-gradient-to-r from-purple-500 to-pink-600 rounded-lg sm:rounded-xl flex items-center justify-center mx-auto mb-3 sm:mb-4">
               <div className="text-white">
                 {value.icon}
               </div>
             </div>
-            <h3 className="text-xl font-bold text-gray-900 mb-4">{value.title}</h3>
-            <p className="text-gray-600 leading-relaxed">{value.description}</p>
+            <h3 className="text-base sm:text-lg lg:text-xl font-bold text-gray-900 mb-2 sm:mb-3">{value.title}</h3>
+            <p className="text-gray-600 leading-relaxed text-xs sm:text-sm lg:text-base">{value.description}</p>
           </div>
         ))}
       </div>
 
-      {/* Additional CTA Section */}
+      {/* CTA Section */}
       <div className="text-center">
-        <div className="bg-gradient-to-r from-green-600 via-emerald-600 to-teal-600 rounded-3xl p-12 md:p-16 text-white relative overflow-hidden">
-          {/* Background Pattern */}
-          <div className="absolute inset-0 opacity-10">
-            <div className="absolute top-0 left-0 w-32 h-32 bg-white rounded-full -translate-x-16 -translate-y-16"></div>
-            <div className="absolute bottom-0 right-0 w-48 h-48 bg-white rounded-full translate-x-24 translate-y-24"></div>
-          </div>
-          
+        <div className="bg-gradient-to-r from-purple-600 to-pink-600 rounded-xl sm:rounded-2xl p-6 sm:p-8 lg:p-12 text-white relative overflow-hidden">
           <div className="relative z-10">
-            <h3 className="text-3xl md:text-4xl font-bold mb-6">
-              Ready to Transform Your Home?
+            <h3 className="text-xl sm:text-2xl lg:text-3xl font-bold mb-3 sm:mb-4">
+              Ready to Experience Premium Shopping?
             </h3>
-            <p className="text-green-100 text-lg mb-8 max-w-2xl mx-auto text-lg">
-              Join our family of 10,000+ satisfied customers who trust us for quality home essentials and exceptional service.
+            <p className="text-purple-100 text-sm sm:text-base lg:text-lg mb-4 sm:mb-6 max-w-full lg:max-w-2xl mx-auto px-2">
+              Join thousands of satisfied customers who trust us for authentic products and exceptional service.
             </p>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <button className="bg-white text-green-600 px-8 py-4 rounded-xl font-bold hover:bg-gray-100 transition-all duration-300 transform hover:scale-105 shadow-lg">
-                Explore Our Collection
+            <div className="flex flex-col xs:flex-row gap-3 sm:gap-4 justify-center">
+              <button className="bg-white text-purple-600 px-6 sm:px-8 py-2 sm:py-3 rounded-lg sm:rounded-xl font-bold hover:bg-gray-100 transition-all duration-300 transform hover:scale-105 shadow-lg text-sm sm:text-base">
+                Shop All Products
               </button>
-              <button className="border-2 border-white text-white px-8 py-4 rounded-xl font-bold hover:bg-white hover:text-green-600 transition-all duration-300 transform hover:scale-105">
-                Contact Our Experts
+              <button className="border-2 border-white text-white px-6 sm:px-8 py-2 sm:py-3 rounded-lg sm:rounded-xl font-bold hover:bg-white hover:text-purple-600 transition-all duration-300 transform hover:scale-105 text-sm sm:text-base">
+                Learn More
               </button>
             </div>
           </div>
+          
+          {/* Background Decorations */}
+          <div className="absolute top-0 right-0 w-20 h-20 sm:w-24 sm:h-24 lg:w-32 lg:h-32 bg-white/10 rounded-full -translate-y-8 sm:-translate-y-12 lg:-translate-y-16 translate-x-8 sm:translate-x-12 lg:translate-x-16"></div>
+          <div className="absolute bottom-0 left-0 w-24 h-24 sm:w-32 sm:h-32 lg:w-48 lg:h-48 bg-white/10 rounded-full translate-y-8 sm:translate-y-12 lg:translate-y-24 -translate-x-8 sm:-translate-x-12 lg:-translate-x-24"></div>
         </div>
       </div>
     </div>

@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { FaPhone, FaEnvelope, FaMapMarkerAlt, FaStar, FaSync, FaExternalLinkAlt, FaPaperPlane } from 'react-icons/fa';
+import { FaPhone, FaEnvelope, FaMapMarkerAlt, FaStar, FaSync, FaExternalLinkAlt, FaPaperPlane, FaShoppingBag, FaHeadset, FaShippingFast } from 'react-icons/fa';
 import { FiPhoneCall, FiZoomIn, FiZoomOut } from 'react-icons/fi';
 
 const ContactInfo = () => {
@@ -7,11 +7,13 @@ const ContactInfo = () => {
     name: '',
     phone: '',
     email: '',
+    subject: '',
     message: ''
   });
 
   const [mapZoom, setMapZoom] = useState(1);
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [selectedDepartment, setSelectedDepartment] = useState('customer-service');
 
   const handleChange = (e) => {
     setFormData({
@@ -35,6 +37,7 @@ const ContactInfo = () => {
       name: '',
       phone: '',
       email: '',
+      subject: '',
       message: ''
     });
   };
@@ -54,50 +57,86 @@ const ContactInfo = () => {
   const contactMethods = [
     {
       icon: <FiPhoneCall className="text-xl sm:text-2xl" />,
-      title: "Primary Phone",
-      details: ["01753924093", "01753924094"],
+      title: "Customer Service",
+      details: ["+1 (555) 123-GRAB", "+1 (555) 123-HELP"],
+      description: "For order issues & product questions",
       bgColor: "bg-green-100",
       textColor: "text-green-600"
     },
     {
-      icon: <FaPhone className="text-xl sm:text-2xl" />,
-      title: "Support Line",
-      details: ["01753924095", "01753924096"],
+      icon: <FaHeadset className="text-xl sm:text-2xl" />,
+      title: "Sales & Support",
+      details: ["+1 (555) 123-SALE", "+1 (555) 123-SHOP"],
+      description: "For bulk orders & business inquiries",
       bgColor: "bg-blue-100",
       textColor: "text-blue-600"
     },
     {
       icon: <FaEnvelope className="text-xl sm:text-2xl" />,
-      title: "Email Address",
-      details: ["support@bdcalling.com", "info@bdcalling.com"],
+      title: "Email Support",
+      details: ["support@grabitshop.com", "orders@grabitshop.com"],
+      description: "We respond within 2 hours",
       bgColor: "bg-purple-100",
       textColor: "text-purple-600"
+    },
+    {
+      icon: <FaShippingFast className="text-xl sm:text-2xl" />,
+      title: "Shipping & Returns",
+      details: ["+1 (555) 123-SHIP", "returns@grabitshop.com"],
+      description: "Delivery tracking & return requests",
+      bgColor: "bg-orange-100",
+      textColor: "text-orange-600"
     }
   ];
 
-  const wordCompoItems = [
-    { title: "Bangladesh Television", description: "BTV content rating" },
-    { title: "BioMaster", description: "Jairo" },
-    { title: "Pakl Sirov", description: "Peking Hua" },
-    { title: "Tamura", description: "Tamanu" },
-    { title: "Samsung Service Center", description: "Shantung District" },
-    { title: "Gongb", description: "Anhui, Yinjiang, Hong Kong" },
-    { title: "Yue Zhi", description: "China" },
-    { title: "Temu", description: "Jinanxi, Lengsuan" }
+  const departments = [
+    { id: 'customer-service', name: 'Customer Service', description: 'Order issues & product questions' },
+    { id: 'sales', name: 'Sales Team', description: 'Bulk orders & business inquiries' },
+    { id: 'shipping', name: 'Shipping & Returns', description: 'Delivery tracking & returns' },
+    { id: 'wholesale', name: 'Wholesale', description: 'Business partnerships' }
+  ];
+
+  const popularProducts = [
+    { name: "Essence Mascara", category: "Beauty" },
+    { name: "Calvin Klein Fragrance", category: "Fragrances" },
+    { name: "Home Decor Swing", category: "Home Decor" },
+    { name: "Bamboo Kitchen Utensils", category: "Kitchen" },
+    { name: "Fresh Apples", category: "Groceries" },
+    { name: "Chanel Coco Noir", category: "Fragrances" },
+    { name: "Designer Table Lamp", category: "Home Decor" },
+    { name: "Premium Beef Steak", category: "Groceries" }
+  ];
+
+  const storeFeatures = [
+    { icon: "🚚", title: "Free Shipping", description: "On orders over $50" },
+    { icon: "↩️", title: "Easy Returns", description: "30-day return policy" },
+    { icon: "🔒", title: "Secure Payment", description: "100% secure checkout" },
+    { icon: "⭐", title: "Premium Quality", description: "150+ trusted brands" },
+    { icon: "⏰", title: "24/7 Support", description: "Always here to help" },
+    { icon: "🎁", title: "Special Offers", description: "Up to 50% discounts" }
   ];
 
   return (
-    // FIXED: Remove max-w-[1920px] and lg:px-24
     <div className="w-full max-w-full px-3 sm:px-4 lg:px-6 py-8 sm:py-12 lg:py-16 mx-auto overflow-x-hidden">
       {/* Header Section */}
       <div className="text-center mb-8 sm:mb-12 lg:mb-16">
         <h1 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-gray-900 mb-4 sm:mb-6">
-          Contact <span className="text-green-600">With Us</span>
+          Contact <span className="bg-gradient-to-r from-purple-600 to-pink-600 bg-clip-text text-transparent">GrabIt</span> Support
         </h1>
         <p className="text-base sm:text-lg lg:text-xl text-gray-600 max-w-full lg:max-w-3xl mx-auto leading-relaxed px-2">
-          Customer service should not be a department. It should be the entire company. 
-          We're here to help you 24/7 with any questions or concerns.
+          Your satisfaction is our priority. Get in touch with our dedicated support team for any questions about our 150+ premium products across beauty, fragrances, home decor, and kitchen categories.
         </p>
+      </div>
+
+      {/* Store Features */}
+      <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-3 sm:gap-4 mb-8 sm:mb-12">
+        {storeFeatures.map((feature, index) => (
+          <div key={index} className="bg-white rounded-xl p-3 sm:p-4 text-center shadow-md border border-gray-200 hover:shadow-lg transition-all duration-300">
+            <div className="text-2xl sm:text-3xl mb-2">{feature.icon}</div>
+            <h3 className="font-semibold text-gray-900 text-sm sm:text-base mb-1">{feature.title}</h3>
+            <p className="text-gray-600 text-xs sm:text-sm">{feature.description}</p>
+          </div>
+        ))}
       </div>
 
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 sm:gap-8 lg:gap-12 mb-8 sm:mb-12 lg:mb-16">
@@ -112,6 +151,7 @@ const ContactInfo = () => {
                 </div>
                 <div className="flex-1 min-w-0">
                   <h3 className="text-lg sm:text-xl font-semibold text-gray-900 mb-2 sm:mb-3">{method.title}</h3>
+                  <p className="text-gray-500 text-sm mb-2 sm:mb-3">{method.description}</p>
                   <div className="space-y-1 sm:space-y-2">
                     {method.details.map((detail, idx) => (
                       <p key={idx} className="text-gray-700 text-sm sm:text-base lg:text-lg font-medium break-words">
@@ -124,28 +164,33 @@ const ContactInfo = () => {
             </div>
           ))}
 
-          {/* Address Section */}
+          {/* Store Address */}
           <div className="bg-white rounded-xl sm:rounded-2xl shadow-md sm:shadow-lg border border-gray-200 p-4 sm:p-6">
             <div className="flex items-start gap-3 sm:gap-4">
-              <div className="p-2 sm:p-3 rounded-xl sm:rounded-2xl bg-orange-100 text-orange-600 flex-shrink-0">
-                <FaMapMarkerAlt className="text-xl sm:text-2xl" />
+              <div className="p-2 sm:p-3 rounded-xl sm:rounded-2xl bg-pink-100 text-pink-600 flex-shrink-0">
+                <FaShoppingBag className="text-xl sm:text-2xl" />
               </div>
               <div className="min-w-0">
-                <h3 className="text-lg sm:text-xl font-semibold text-gray-900 mb-2 sm:mb-3">Our Address</h3>
-                <p className="text-gray-700 leading-relaxed text-sm sm:text-base lg:text-lg break-words">
-                  Ruami Mello Maraes Filho, 987 - Salvador - MA, 40382, Brazil.
+                <h3 className="text-lg sm:text-xl font-semibold text-gray-900 mb-2 sm:mb-3">GrabIt Store</h3>
+                <p className="text-gray-700 leading-relaxed text-sm sm:text-base lg:text-lg break-words mb-2">
+                  123 Shopping District, Retail Park<br />
+                  New York, NY 10001, USA
+                </p>
+                <p className="text-gray-500 text-sm">
+                  📍 Located in the heart of the shopping district
                 </p>
               </div>
             </div>
           </div>
 
           {/* Corporate Office */}
-          <div className="bg-green-50 rounded-xl sm:rounded-2xl shadow-md sm:shadow-lg border border-green-200 p-4 sm:p-6">
+          <div className="bg-gradient-to-r from-purple-50 to-pink-50 rounded-xl sm:rounded-2xl shadow-md sm:shadow-lg border border-purple-200 p-4 sm:p-6">
             <h3 className="text-lg sm:text-xl font-semibold text-gray-900 mb-3 sm:mb-4">
-              Bdcalling IT Ltd. - Corporate Office
+              GrabIt E-Commerce Ltd.
             </h3>
             <p className="text-gray-700 mb-3 sm:mb-4 leading-relaxed text-sm sm:text-base lg:text-lg break-words">
-              Daisy Garden, Hill 14, Block84, Main Road, Khabara 1703
+              456 Business Avenue, Suite 1200<br />
+              Manhattan, New York 10001
             </p>
             <div className="flex flex-col sm:flex-row sm:items-center gap-3 sm:gap-6">
               <div className="flex items-center gap-2">
@@ -154,9 +199,9 @@ const ContactInfo = () => {
                     <FaStar key={i} className="text-sm sm:text-base lg:text-lg" />
                   ))}
                 </div>
-                <span className="text-gray-700 font-semibold text-sm sm:text-base">4.5/5</span>
+                <span className="text-gray-700 font-semibold text-sm sm:text-base">4.8/5</span>
               </div>
-              <span className="text-gray-500 text-sm sm:text-base lg:text-lg">54 reviews</span>
+              <span className="text-gray-500 text-sm sm:text-base lg:text-lg">1,250+ reviews</span>
             </div>
           </div>
         </div>
@@ -166,7 +211,7 @@ const ContactInfo = () => {
           {/* Map Container */}
           <div className="bg-white rounded-xl sm:rounded-2xl shadow-lg sm:shadow-xl border border-gray-200 overflow-hidden w-full">
             <div className="p-3 sm:p-4 lg:p-6 border-b border-gray-200 flex justify-between items-center bg-gray-50">
-              <h3 className="text-base sm:text-lg lg:text-xl font-semibold text-gray-900">Our Location</h3>
+              <h3 className="text-base sm:text-lg lg:text-xl font-semibold text-gray-900">Our Store Location</h3>
               <div className="flex gap-1 sm:gap-2">
                 <button
                   onClick={handleZoomOut}
@@ -177,7 +222,7 @@ const ContactInfo = () => {
                 </button>
                 <button
                   onClick={handleResetZoom}
-                  className="px-2 sm:px-3 lg:px-4 py-1 sm:py-2 bg-green-600 hover:bg-green-700 text-white rounded-lg sm:rounded-xl text-xs sm:text-sm font-semibold transition-all duration-300 hover:scale-105 flex items-center gap-1 sm:gap-2"
+                  className="px-2 sm:px-3 lg:px-4 py-1 sm:py-2 bg-purple-600 hover:bg-purple-700 text-white rounded-lg sm:rounded-xl text-xs sm:text-sm font-semibold transition-all duration-300 hover:scale-105 flex items-center gap-1 sm:gap-2"
                   title="Reset Zoom"
                 >
                   <FaSync className="text-xs" />
@@ -195,7 +240,7 @@ const ContactInfo = () => {
             
             <div className="relative overflow-hidden bg-gray-100">
               <iframe 
-                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d12370371.792462897!2d2.124175805707276!3d40.80356989527924!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x12d4fe82448dd203%3A0xe22cf55c24635e6f!2sItaly!5e0!3m2!1sen!2sbd!4v1763151793001!5m2!1sen!2sbd" 
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d193595.15830869428!2d-74.119763973046!3d40.69766374874431!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x89c24fa5d33f083b%3A0xc80b8f06e177fe62!2sNew%20York%2C%20NY%2C%20USA!5e0!3m2!1sen!2sbd!4v1763151793001!5m2!1sen!2sbd" 
                 width="100%" 
                 height="300"
                 style={{ 
@@ -207,50 +252,45 @@ const ContactInfo = () => {
                 allowFullScreen 
                 loading="lazy" 
                 referrerPolicy="no-referrer-when-downgrade"
-                title="Our Location Map"
+                title="GrabIt Store Location - New York"
                 className="rounded-b-xl sm:rounded-b-2xl"
               ></iframe>
             </div>
           </div>
 
           {/* Map Links */}
-          <div className="bg-blue-50 rounded-xl sm:rounded-2xl shadow-md sm:shadow-lg border border-blue-200 p-4 sm:p-6">
-            <h3 className="text-lg sm:text-xl font-semibold text-gray-900 mb-3 sm:mb-4">Explore Our Location</h3>
+          <div className="bg-purple-50 rounded-xl sm:rounded-2xl shadow-md sm:shadow-lg border border-purple-200 p-4 sm:p-6">
+            <h3 className="text-lg sm:text-xl font-semibold text-gray-900 mb-3 sm:mb-4">Visit Our Store</h3>
             <div className="flex flex-col sm:flex-row gap-2 sm:gap-3">
               <button 
-                className="bg-blue-600 hover:bg-blue-700 text-white px-3 sm:px-4 lg:px-6 py-2 sm:py-3 rounded-lg sm:rounded-xl font-semibold transition-all duration-300 transform hover:scale-105 flex items-center justify-center gap-1 sm:gap-2 flex-1 text-sm sm:text-base"
-                onClick={() => window.open('https://www.google.com/maps/place/Italy', '_blank')}
+                className="bg-purple-600 hover:bg-purple-700 text-white px-3 sm:px-4 lg:px-6 py-2 sm:py-3 rounded-lg sm:rounded-xl font-semibold transition-all duration-300 transform hover:scale-105 flex items-center justify-center gap-1 sm:gap-2 flex-1 text-sm sm:text-base"
+                onClick={() => window.open('https://www.google.com/maps/place/New+York,+NY,+USA', '_blank')}
               >
                 <FaExternalLinkAlt className="text-xs sm:text-sm" />
                 View on Google Maps
               </button>
               <button 
-                className="border border-blue-600 text-blue-600 hover:bg-blue-600 hover:text-white px-3 sm:px-4 lg:px-6 py-2 sm:py-3 rounded-lg sm:rounded-xl font-semibold transition-all duration-300 transform hover:scale-105 flex items-center justify-center gap-1 sm:gap-2 flex-1 text-sm sm:text-base"
-                onClick={() => window.open('https://www.google.com/maps/place/Italy', '_blank')}
+                className="border border-purple-600 text-purple-600 hover:bg-purple-600 hover:text-white px-3 sm:px-4 lg:px-6 py-2 sm:py-3 rounded-lg sm:rounded-xl font-semibold transition-all duration-300 transform hover:scale-105 flex items-center justify-center gap-1 sm:gap-2 flex-1 text-sm sm:text-base"
+                onClick={() => window.open('https://www.google.com/maps/dir//New+York,+NY,+USA', '_blank')}
               >
                 <FaExternalLinkAlt className="text-xs sm:text-sm" />
                 Get Directions
               </button>
             </div>
           </div>
-        </div>
-      </div>
 
-      {/* Word Compo Section */}
-      <div className="bg-gray-50 rounded-xl sm:rounded-2xl shadow-md sm:shadow-lg border border-gray-200 p-4 sm:p-6 lg:p-8 mb-8 sm:mb-12 lg:mb-16">
-        <h3 className="text-xl sm:text-2xl font-bold text-gray-900 mb-4 sm:mb-6 lg:mb-8 text-center">Our Partners & Services</h3>
-        <div className="grid grid-cols-1 xs:grid-cols-2 sm:grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4 lg:gap-6">
-          {wordCompoItems.map((item, index) => (
-            <div 
-              key={index}
-              className="bg-white p-3 sm:p-4 rounded-lg sm:rounded-xl border border-gray-200 hover:border-green-300 hover:shadow-md transition-all duration-300 group"
-            >
-              <h4 className="font-semibold text-gray-900 text-sm sm:text-base mb-1 sm:mb-2 group-hover:text-green-600 transition-colors duration-300 line-clamp-2">
-                {item.title}
-              </h4>
-              <p className="text-gray-600 text-xs sm:text-sm line-clamp-2">{item.description}</p>
+          {/* Popular Products */}
+          <div className="bg-white rounded-xl sm:rounded-2xl shadow-md sm:shadow-lg border border-gray-200 p-4 sm:p-6">
+            <h3 className="text-lg sm:text-xl font-semibold text-gray-900 mb-3 sm:mb-4">Popular Products</h3>
+            <div className="grid grid-cols-2 gap-2 sm:gap-3">
+              {popularProducts.map((product, index) => (
+                <div key={index} className="bg-gray-50 rounded-lg p-2 sm:p-3 border border-gray-200 hover:border-purple-300 transition-colors duration-300">
+                  <p className="font-medium text-gray-900 text-xs sm:text-sm mb-1 line-clamp-1">{product.name}</p>
+                  <p className="text-purple-600 text-xs">{product.category}</p>
+                </div>
+              ))}
             </div>
-          ))}
+          </div>
         </div>
       </div>
 
@@ -258,7 +298,7 @@ const ContactInfo = () => {
       <div className="bg-white rounded-xl sm:rounded-2xl shadow-lg sm:shadow-xl border border-gray-200 p-4 sm:p-6 lg:p-8">
         <div className="text-center mb-6 sm:mb-8">
           <h2 className="text-xl sm:text-2xl lg:text-3xl font-bold text-gray-900 mb-3 sm:mb-4">Send Us a Message</h2>
-          <p className="text-gray-600 text-sm sm:text-base lg:text-lg">We'll get back to you within 24 hours</p>
+          <p className="text-gray-600 text-sm sm:text-base lg:text-lg">Get help with orders, products, or any other questions</p>
         </div>
 
         <form onSubmit={handleSubmit} className="space-y-4 sm:space-y-6">
@@ -274,7 +314,7 @@ const ContactInfo = () => {
                 value={formData.name}
                 onChange={handleChange}
                 placeholder="Enter your full name"
-                className="w-full px-3 sm:px-4 py-2 sm:py-3 border border-gray-200 rounded-lg sm:rounded-xl focus:border-green-500 focus:ring-2 focus:ring-green-200 transition-all duration-300 bg-white outline-none text-sm sm:text-base"
+                className="w-full px-3 sm:px-4 py-2 sm:py-3 border border-gray-200 rounded-lg sm:rounded-xl focus:border-purple-500 focus:ring-2 focus:ring-purple-200 transition-all duration-300 bg-white outline-none text-sm sm:text-base"
                 required
               />
             </div>
@@ -290,24 +330,61 @@ const ContactInfo = () => {
                 value={formData.phone}
                 onChange={handleChange}
                 placeholder="Enter your phone number"
-                className="w-full px-3 sm:px-4 py-2 sm:py-3 border border-gray-200 rounded-lg sm:rounded-xl focus:border-green-500 focus:ring-2 focus:ring-green-200 transition-all duration-300 bg-white outline-none text-sm sm:text-base"
+                className="w-full px-3 sm:px-4 py-2 sm:py-3 border border-gray-200 rounded-lg sm:rounded-xl focus:border-purple-500 focus:ring-2 focus:ring-purple-200 transition-all duration-300 bg-white outline-none text-sm sm:text-base"
                 required
               />
             </div>
           </div>
 
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-6">
+            <div>
+              <label htmlFor="email" className="block text-xs sm:text-sm font-semibold text-gray-700 mb-1 sm:mb-2">
+                Email Address *
+              </label>
+              <input
+                type="email"
+                id="email"
+                name="email"
+                value={formData.email}
+                onChange={handleChange}
+                placeholder="Enter your email address"
+                className="w-full px-3 sm:px-4 py-2 sm:py-3 border border-gray-200 rounded-lg sm:rounded-xl focus:border-purple-500 focus:ring-2 focus:ring-purple-200 transition-all duration-300 bg-white outline-none text-sm sm:text-base"
+                required
+              />
+            </div>
+
+            <div>
+              <label htmlFor="department" className="block text-xs sm:text-sm font-semibold text-gray-700 mb-1 sm:mb-2">
+                Department
+              </label>
+              <select
+                id="department"
+                name="department"
+                value={selectedDepartment}
+                onChange={(e) => setSelectedDepartment(e.target.value)}
+                className="w-full px-3 sm:px-4 py-2 sm:py-3 border border-gray-200 rounded-lg sm:rounded-xl focus:border-purple-500 focus:ring-2 focus:ring-purple-200 transition-all duration-300 bg-white outline-none text-sm sm:text-base"
+              >
+                {departments.map(dept => (
+                  <option key={dept.id} value={dept.id}>
+                    {dept.name}
+                  </option>
+                ))}
+              </select>
+            </div>
+          </div>
+
           <div>
-            <label htmlFor="email" className="block text-xs sm:text-sm font-semibold text-gray-700 mb-1 sm:mb-2">
-              Email Address *
+            <label htmlFor="subject" className="block text-xs sm:text-sm font-semibold text-gray-700 mb-1 sm:mb-2">
+              Subject *
             </label>
             <input
-              type="email"
-              id="email"
-              name="email"
-              value={formData.email}
+              type="text"
+              id="subject"
+              name="subject"
+              value={formData.subject}
               onChange={handleChange}
-              placeholder="Enter your email address"
-              className="w-full px-3 sm:px-4 py-2 sm:py-3 border border-gray-200 rounded-lg sm:rounded-xl focus:border-green-500 focus:ring-2 focus:ring-green-200 transition-all duration-300 bg-white outline-none text-sm sm:text-base"
+              placeholder="What is this regarding?"
+              className="w-full px-3 sm:px-4 py-2 sm:py-3 border border-gray-200 rounded-lg sm:rounded-xl focus:border-purple-500 focus:ring-2 focus:ring-purple-200 transition-all duration-300 bg-white outline-none text-sm sm:text-base"
               required
             />
           </div>
@@ -321,9 +398,9 @@ const ContactInfo = () => {
               name="message"
               value={formData.message}
               onChange={handleChange}
-              placeholder="Tell us how we can help you..."
+              placeholder="Tell us how we can help you with our products..."
               rows="4"
-              className="w-full px-3 sm:px-4 py-2 sm:py-3 border border-gray-200 rounded-lg sm:rounded-xl focus:border-green-500 focus:ring-2 focus:ring-green-200 transition-all duration-300 bg-white outline-none resize-vertical text-sm sm:text-base"
+              className="w-full px-3 sm:px-4 py-2 sm:py-3 border border-gray-200 rounded-lg sm:rounded-xl focus:border-purple-500 focus:ring-2 focus:ring-purple-200 transition-all duration-300 bg-white outline-none resize-vertical text-sm sm:text-base"
               required
             ></textarea>
           </div>
@@ -334,11 +411,11 @@ const ContactInfo = () => {
             className={`w-full py-3 sm:py-4 px-4 sm:px-6 rounded-lg sm:rounded-xl font-semibold text-sm sm:text-base lg:text-lg transition-all duration-300 transform hover:scale-105 flex items-center justify-center gap-2 sm:gap-3 ${
               isSubmitting
                 ? 'bg-gray-400 cursor-not-allowed text-white'
-                : 'bg-green-600 hover:bg-green-700 text-white shadow-md hover:shadow-lg'
+                : 'bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-700 hover:to-pink-700 text-white shadow-md hover:shadow-lg'
             }`}
           >
             <FaPaperPlane className="text-base sm:text-lg lg:text-xl" />
-            {isSubmitting ? 'Sending Message...' : 'Send Message'}
+            {isSubmitting ? 'Sending Message...' : 'Send Message to GrabIt'}
           </button>
         </form>
       </div>

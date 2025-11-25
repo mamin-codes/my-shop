@@ -10,6 +10,7 @@ import Contact from './Page/Contact/Contact';
 import Blog from './Page/Blog/Blog';
 import ShopNow from './Page/ShopNow/ShopNow';
 import SingleProducts from './Components/Shared/SingleProducts';
+import AddCart from './Page/AddCart/AddCart';
 
 const router = createBrowserRouter([
   {
@@ -20,9 +21,10 @@ const router = createBrowserRouter([
       { path:"/home", element:<Home></Home>  },
       {path: "/about", element:<About></About>},
       {path: "/contact", element:<Contact></Contact>},
-      {path: "/blog", element:<Blog></Blog>},
+      {path: "/category", element:<Blog></Blog>},
       {path: "/shop", element:<ShopNow></ShopNow>},
       {path: "/shop/:id", element:<SingleProducts></SingleProducts>},
+      {path: "/cart", element:<AddCart></AddCart>},
       
     ],
   },

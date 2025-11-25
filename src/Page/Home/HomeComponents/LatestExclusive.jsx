@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
-import cover from "../../../assets/image/HERO-COVER.jpg";
-import { FaArrowRight, FaSnowflake, FaTag, FaClock } from 'react-icons/fa';
+
+import { FaArrowRight, FaSnowflake, FaTag, FaClock, FaStar } from 'react-icons/fa';
 
 const LatestExclusive = () => {
     const [timeLeft, setTimeLeft] = useState({
@@ -29,7 +29,7 @@ const LatestExclusive = () => {
     return (
         <div className="w-full max-w-full px-3 sm:px-4 lg:px-6 py-6 sm:py-8 lg:py-12 mx-auto overflow-x-hidden">
             <div 
-                style={{ backgroundImage: `url(${cover})` }} 
+                style={{ backgroundImage: `url("https://i.ibb.co.com/Lh2QW3Tj/cover2.jpg")` }} 
                 className="relative min-h-[400px] sm:min-h-[500px] lg:min-h-[600px] xl:min-h-[700px] bg-cover bg-center rounded-lg sm:rounded-xl lg:rounded-2xl overflow-hidden group w-full"
             >
                 {/* Gradient Overlays */}
@@ -48,11 +48,11 @@ const LatestExclusive = () => {
                     <div className="flex flex-col sm:flex-row items-center gap-2 sm:gap-3 mb-4 sm:mb-6 w-full lg:justify-end">
                         <div className="flex items-center gap-1 sm:gap-2 bg-gradient-to-r from-red-500 to-pink-600 px-3 sm:px-4 py-1 sm:py-2 rounded-lg sm:rounded-xl shadow-lg">
                             <FaTag className="text-xs sm:text-sm" />
-                            <span className="text-xs sm:text-sm font-bold whitespace-nowrap">Limited Time Offer</span>
+                            <span className="text-xs sm:text-sm font-bold whitespace-nowrap">Flash Sale</span>
                         </div>
                         <div className="flex items-center gap-1 sm:gap-2 bg-white/20 backdrop-blur-sm px-3 sm:px-4 py-1 sm:py-2 rounded-lg sm:rounded-xl border border-white/30">
-                            <FaSnowflake className="text-blue-400 text-xs sm:text-sm" />
-                            <span className="text-xs sm:text-sm font-semibold whitespace-nowrap">Winter Exclusive</span>
+                            <FaStar className="text-yellow-400 text-xs sm:text-sm" />
+                            <span className="text-xs sm:text-sm font-semibold whitespace-nowrap">Premium Brands</span>
                         </div>
                     </div>
 
@@ -60,25 +60,41 @@ const LatestExclusive = () => {
                     <div className="mb-3 sm:mb-4 text-center lg:text-right w-full">
                         <div className="inline-flex items-center gap-2 sm:gap-3 bg-white/20 backdrop-blur-sm px-3 sm:px-4 lg:px-6 py-1 sm:py-2 lg:py-3 rounded-lg sm:rounded-xl border border-white/30">
                             <span className="text-xl sm:text-2xl lg:text-3xl xl:text-4xl font-bold text-red-400 animate-pulse">
-                                30% OFF
+                                UP TO 50% OFF
                             </span>
-                            <span className="text-sm sm:text-base lg:text-lg text-white">Sale</span>
+                            <span className="text-sm sm:text-base lg:text-lg text-white">Deal</span>
                         </div>
                     </div>
 
                     {/* Main Heading */}
                     <h2 className="text-xl sm:text-2xl lg:text-3xl xl:text-4xl font-bold text-center lg:text-right mb-3 sm:mb-4 leading-tight sm:leading-snug w-full">
-                        Latest Exclusive
+                        Premium Collection
                         <br />
                         <span className="bg-gradient-to-r from-blue-400 to-cyan-400 bg-clip-text text-transparent text-2xl sm:text-3xl lg:text-4xl xl:text-5xl">
-                            Winter Collection
+                            Beauty & Lifestyle
                         </span>
                     </h2>
 
                     {/* Description */}
                     <p className="text-xs sm:text-sm lg:text-base text-gray-200 text-center lg:text-right mb-4 sm:mb-6 max-w-full sm:max-w-md lg:max-w-lg leading-relaxed">
-                        Discover our premium winter collection with exclusive designs and unbeatable prices
+                        Shop from 150+ premium products including beauty essentials, fragrances, home decor, and kitchen accessories
                     </p>
+
+                    {/* Product Stats */}
+                    <div className="flex justify-center lg:justify-end gap-4 sm:gap-6 mb-4 sm:mb-6 w-full">
+                        <div className="text-center">
+                            <div className="text-lg sm:text-xl lg:text-2xl font-bold text-green-400">150+</div>
+                            <div className="text-[10px] sm:text-xs text-gray-300">Products</div>
+                        </div>
+                        <div className="text-center">
+                            <div className="text-lg sm:text-xl lg:text-2xl font-bold text-blue-400">5</div>
+                            <div className="text-[10px] sm:text-xs text-gray-300">Categories</div>
+                        </div>
+                        <div className="text-center">
+                            <div className="text-lg sm:text-xl lg:text-2xl font-bold text-purple-400">50%</div>
+                            <div className="text-[10px] sm:text-xs text-gray-300">Max Discount</div>
+                        </div>
+                    </div>
 
                     {/* Countdown Timer */}
                     <div className="flex justify-center lg:justify-end gap-1 sm:gap-2 lg:gap-3 mb-4 sm:mb-6 w-full">
@@ -97,22 +113,23 @@ const LatestExclusive = () => {
                     {/* CTA Buttons */}
                     <div className="flex flex-col sm:flex-row gap-2 sm:gap-3 items-center w-full justify-center lg:justify-end max-w-sm sm:max-w-none mx-auto lg:mx-0">
                         <button className="group bg-gradient-to-r from-red-500 to-pink-600 hover:from-red-600 hover:to-pink-700 text-white px-4 sm:px-6 lg:px-8 py-2 sm:py-3 rounded-lg sm:rounded-xl font-semibold text-xs sm:text-sm lg:text-base shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105 flex items-center gap-1 sm:gap-2 w-full sm:w-auto justify-center">
-                            <FaSnowflake className="text-sm sm:text-base" />
-                            <span className="whitespace-nowrap">Shop Collection</span>
+                            <FaStar className="text-sm sm:text-base" />
+                            <span className="whitespace-nowrap">Shop All Products</span>
                             <FaArrowRight className="group-hover:translate-x-1 transition-transform duration-300 text-xs sm:text-sm" />
                         </button>
                         
                         <button className="group border border-white/30 hover:border-white bg-white/10 backdrop-blur-sm hover:bg-white/20 text-white px-3 sm:px-4 lg:px-6 py-2 sm:py-3 rounded-lg sm:rounded-xl font-semibold text-xs sm:text-sm lg:text-base transition-all duration-300 transform hover:scale-105 w-full sm:w-auto text-center whitespace-nowrap">
-                            View Lookbook
+                            Browse Categories
                         </button>
                     </div>
 
                     {/* Additional Info */}
                     <div className="flex flex-wrap justify-center lg:justify-end gap-2 sm:gap-3 lg:gap-4 mt-4 sm:mt-6 text-[10px] sm:text-xs text-gray-300">
                         {[
-                            { color: 'bg-green-400', text: 'Free Shipping' },
-                            { color: 'bg-blue-400', text: 'Premium Quality' },
-                            { color: 'bg-purple-400', text: 'Exclusive Designs' }
+                            { color: 'bg-green-400', text: 'Beauty & Cosmetics' },
+                            { color: 'bg-blue-400', text: 'Premium Fragrances' },
+                            { color: 'bg-purple-400', text: 'Home & Kitchen' },
+                            { color: 'bg-orange-400', text: 'Fresh Groceries' }
                         ].map((item, index) => (
                             <div key={index} className="flex items-center gap-1">
                                 <div className={`w-1.5 h-1.5 ${item.color} rounded-full animate-pulse`}></div>
@@ -127,8 +144,8 @@ const LatestExclusive = () => {
                     <div className="bg-white/10 backdrop-blur-sm p-1 sm:p-2 lg:p-3 rounded-lg border border-white/20">
                         <div className="text-center">
                             <FaClock className="text-red-400 text-sm sm:text-base lg:text-lg mx-auto mb-1" />
-                            <div className="text-white font-semibold text-[10px] sm:text-xs lg:text-sm">Hurry Up!</div>
-                            <div className="text-red-400 text-[10px] sm:text-xs">Limited Stock</div>
+                            <div className="text-white font-semibold text-[10px] sm:text-xs lg:text-sm">Ending Soon</div>
+                            <div className="text-red-400 text-[10px] sm:text-xs">24H Only</div>
                         </div>
                     </div>
                 </div>

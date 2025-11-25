@@ -1,44 +1,37 @@
 [
   {
     "id": 1,
-    "name": "Eggs",
-    "items": 154,
-    "discount": 0,
-    "image": "https://maraviyainfotech.com/projects/grabit-tailwind/grabit-tailwind/assets/img/category/c-1.png"
+    "name": "Beauty",
+    "items": 40,
+    "discount": 15,
+    "image": "https://cdn.dummyjson.com/product-images/beauty/essence-mascara-lash-princess/thumbnail.webp"
   },
   {
     "id": 2,
-    "name": "Clothes",
-    "items": 320,
-    "discount": 30,
-    "image": "https://maraviyainfotech.com/projects/grabit-tailwind/grabit-tailwind/assets/img/category/c-4.png"
+    "name": "Fragrances",
+    "items": 40,
+    "discount": 20,
+    "image": "https://cdn.dummyjson.com/product-images/fragrances/calvin-klein-ck-one/thumbnail.webp"
   },
   {
     "id": 3,
-    "name": "Watches",
-    "items": 65,
-    "discount": 0,
-    "image": "https://maraviyainfotech.com/projects/grabit-tailwind/grabit-tailwind/assets/img/product-images/54_1.jpg"
+    "name": "Groceries",
+    "items": 40,
+    "discount": 10,
+    "image": "https://cdn.dummyjson.com/product-images/groceries/apple/thumbnail.webp"
   },
   {
     "id": 4,
-    "name": "Dresses",
-    "items": 548,
-    "discount": 15,
-    "image": "https://maraviyainfotech.com/projects/grabit-tailwind/grabit-tailwind/assets/img/category/c-1.png"
+    "name": "Home Decor",
+    "items": 40,
+    "discount": 25,
+    "image": "https://cdn.dummyjson.com/product-images/home-decoration/decoration-swing/thumbnail.webp"
   },
   {
     "id": 5,
-    "name": "Glasses",
-    "items": 48,
-    "discount": 10,
-    "image": "https://maraviyainfotech.com/projects/grabit-tailwind/grabit-tailwind/assets/img/category/c-4.png"
-  },
-  {
-    "id": 6,
-    "name": "Cosmatics",
-    "items": 59,
-    "discount": 0,
-    "image": "https://maraviyainfotech.com/projects/grabit-tailwind/grabit-tailwind/assets/img/product-images/54_1.jpg"
+    "name": "Kitchen",
+    "items": 40,
+    "discount": 18,
+    "image": "https://cdn.dummyjson.com/product-images/kitchen-accessories/bamboo-spatula/thumbnail.webp"
   }
 ]

@@ -8,7 +8,14 @@ import SectionHeading from "./SectionHeading";
 
 const SingleProducts = () => {
   const { id } = useParams();
-  const { products } = useData();
+  const { 
+    products, 
+    addToCart, 
+    isInCart, 
+    getItemQuantity,
+    updateQuantity,
+    removeFromCart 
+  } = useData();
 
   const productId = Number(id);
   const findProduct = products.find((p) => p.id === productId);
@@ -56,6 +63,10 @@ const SingleProducts = () => {
     images = [image, image, image]
   } = findProduct;
 
+  // Check if product is already in cart
+  const currentQuantity = getItemQuantity(findProduct.id);
+  const isProductInCart = isInCart(findProduct.id);
+
   // Render star ratings
   const renderStars = (rating) => {
     const totalStars = 5;
@@ -80,10 +91,51 @@ const SingleProducts = () => {
   };
 
   const handleAddToCart = async () => {
+    if (stock === "Out of Stock") {
+      alert("This product is out of stock!");
+      return;
+    }
+
     setIsAddingToCart(true);
-    await new Promise(resolve => setTimeout(resolve, 1000));
-    console.log('Added to cart:', { product: findProduct, quantity, selectedWeight });
-    setIsAddingToCart(false);
+    
+    try {
+      // Create cart item with all necessary data
+      const cartItem = {
+        ...findProduct,
+        quantity: quantity,
+        selectedWeight: selectedWeight,
+        totalPrice: price * quantity
+      };
+      
+      // Use the addToCart function from useData hook
+      addToCart(cartItem);
+      
+      // Show success feedback
+      console.log('Added to cart:', cartItem);
+      
+      // Optional: Show success message or animation
+      alert(`${quantity} ${name} added to cart successfully!`);
+      
+    } catch (error) {
+      console.error('Error adding to cart:', error);
+      alert('Failed to add product to cart. Please try again.');
+    } finally {
+      setIsAddingToCart(false);
+    }
+  };
+
+  const handleUpdateQuantity = (newQuantity) => {
+    if (newQuantity < 1) return;
+    
+    if (isProductInCart) {
+      updateQuantity(findProduct.id, newQuantity);
+    }
+    setQuantity(newQuantity);
+  };
+
+  const handleRemoveFromCart = () => {
+    removeFromCart(findProduct.id);
+    setQuantity(1);
   };
 
   const features = [
@@ -196,6 +248,11 @@ const SingleProducts = () => {
                 }`}>
                   {stock}
                 </span>
+                {isProductInCart && (
+                  <span className="ml-3 inline-flex items-center px-3 sm:px-4 py-1 sm:py-2 rounded-full text-xs sm:text-sm font-semibold bg-blue-100 text-blue-800">
+                    In Cart: {currentQuantity}
+                  </span>
+                )}
               </div>
 
               {/* Description */}
@@ -242,7 +299,7 @@ const SingleProducts = () => {
                   <div className="flex items-center border-2 border-gray-200 rounded-lg sm:rounded-xl overflow-hidden">
                     <button
                       className="px-3 sm:px-4 py-2 sm:py-3 bg-gray-50 hover:bg-gray-100 transition-colors disabled:opacity-50 text-sm sm:text-base"
-                      onClick={() => setQuantity(prev => (prev > 1 ? prev - 1 : 1))}
+                      onClick={() => handleUpdateQuantity(quantity - 1)}
                       disabled={quantity === 1}
                     >
                       -
@@ -250,25 +307,38 @@ const SingleProducts = () => {
                     <span className="px-4 sm:px-6 py-2 sm:py-3 bg-white min-w-12 sm:min-w-16 text-center font-bold text-base sm:text-lg">{quantity}</span>
                     <button
                       className="px-3 sm:px-4 py-2 sm:py-3 bg-gray-50 hover:bg-gray-100 transition-colors text-sm sm:text-base"
-                      onClick={() => setQuantity(prev => prev + 1)}
+                      onClick={() => handleUpdateQuantity(quantity + 1)}
                     >
                       +
                     </button>
                   </div>
                 </div>
 
-                <button 
-                  onClick={handleAddToCart}
-                  disabled={isAddingToCart}
-                  className={`flex-1 w-full sm:w-auto py-3 sm:py-4 px-6 sm:px-8 rounded-lg sm:rounded-xl font-bold text-base sm:text-lg transition-all duration-300 flex items-center justify-center gap-2 sm:gap-3 ${
-                    isAddingToCart
-                      ? "bg-green-500 cursor-not-allowed"
-                      : "bg-green-600 hover:bg-green-700 shadow-lg hover:shadow-xl transform hover:scale-105"
-                  }`}
-                >
-                  <FaShoppingCart className="text-lg sm:text-xl" />
-                  {isAddingToCart ? "Adding..." : "Add to Cart"}
-                </button>
+                <div className="flex flex-col sm:flex-row gap-3 w-full sm:w-auto">
+                  <button 
+                    onClick={handleAddToCart}
+                    disabled={isAddingToCart || stock === "Out of Stock"}
+                    className={`flex-1 py-3 sm:py-4 px-6 sm:px-8 rounded-lg sm:rounded-xl font-bold text-base sm:text-lg transition-all duration-300 flex items-center justify-center gap-2 sm:gap-3 ${
+                      isAddingToCart
+                        ? "bg-green-500 cursor-not-allowed"
+                        : stock === "Out of Stock"
+                        ? "bg-gray-400 cursor-not-allowed"
+                        : "bg-green-600 hover:bg-green-700 shadow-lg hover:shadow-xl transform hover:scale-105"
+                    }`}
+                  >
+                    <FaShoppingCart className="text-lg sm:text-xl" />
+                    {isAddingToCart ? "Adding..." : stock === "Out of Stock" ? "Out of Stock" : "Add to Cart"}
+                  </button>
+
+                  {isProductInCart && (
+                    <button 
+                      onClick={handleRemoveFromCart}
+                      className="py-3 sm:py-4 px-4 sm:px-6 rounded-lg sm:rounded-xl font-bold text-base sm:text-lg transition-all duration-300 flex items-center justify-center gap-2 sm:gap-3 bg-red-600 hover:bg-red-700 text-white shadow-lg hover:shadow-xl"
+                    >
+                      Remove
+                    </button>
+                  )}
+                </div>
               </div>
 
               {/* Features */}
@@ -296,7 +366,15 @@ const SingleProducts = () => {
           />
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-4 sm:gap-6 mt-6 sm:mt-8">
             {products.slice(0, 5).map(product => (
-              <ProductCart key={product.id} product={product} />
+              <ProductCart 
+                key={product.id} 
+                product={product}
+                addToCart={addToCart}
+                isInCart={isInCart}
+                getItemQuantity={getItemQuantity}
+                updateQuantity={updateQuantity}
+                removeFromCart={removeFromCart}
+              />
             ))}
           </div>
         </div>

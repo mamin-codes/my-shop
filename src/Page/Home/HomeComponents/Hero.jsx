@@ -1,34 +1,41 @@
 import React, { useState, useEffect } from 'react';
-import bg from "../../../assets/image/HERO-COVER.jpg";
-import { FaArrowRight, FaShoppingBag, FaTag, FaClock } from 'react-icons/fa';
+import { FaArrowRight, FaShoppingBag, FaTag, FaClock, FaStar, FaShippingFast } from 'react-icons/fa';
 
 const Hero = () => {
   const [currentSlide, setCurrentSlide] = useState(0);
   
   const slides = [
     {
-      title: "Biggest Sale For",
-      highlight: "Men & Women",
-      discount: "70% Off",
-      description: "Don't miss our exclusive seasonal collection with massive discounts",
-      buttonText: "Shop Collection",
-      badge: "Limited Time"
-    },
-    {
-      title: "New Arrivals",
-      highlight: "Summer Collection",
+      title: "Everything for Your",
+      highlight: "Beautiful Lifestyle",
       discount: "50% Off",
-      description: "Fresh styles for the sunny season. Be the first to explore!",
-      buttonText: "Explore Now",
-      badge: "New"
+      description: "Discover premium beauty essentials, luxury fragrances, and daily groceries in one place",
+      buttonText: "Shop All Categories",
+      badge: "Premium Quality"
     },
     {
-      title: "Premium Quality",
-      highlight: "Luxury Edition",
+      title: "Fresh Groceries &",
+      highlight: "Home Essentials",
+      discount: "40% Off",
+      description: "From farm-fresh produce to stylish home decor - quality you can trust every day",
+      buttonText: "Explore Essentials",
+      badge: "Fresh Arrivals"
+    },
+    {
+      title: "Luxury Fragrances &",
+      highlight: "Beauty Collection",
       discount: "30% Off",
-      description: "Elevate your style with our premium luxury collection",
+      description: "Elevate your routine with premium cosmetics and exquisite perfumes from top brands",
       buttonText: "Discover Luxury",
-      badge: "Premium"
+      badge: "Luxury Edit"
+    },
+    {
+      title: "Kitchen & Home",
+      highlight: "Living Upgrade",
+      discount: "35% Off",
+      description: "Transform your space with modern kitchen tools and elegant home accessories",
+      buttonText: "Upgrade Home",
+      badge: "Smart Living"
     }
   ];
 
@@ -41,11 +48,10 @@ const Hero = () => {
 
   return (
     <div className="hero-section w-full max-w-full px-3 sm:px-4 lg:px-6 mt-4 sm:mt-6 lg:mt-8 mx-auto overflow-x-hidden relative z-10">
-      {/* FIXED: Added relative z-10 to ensure hero appears below navbar dropdowns */}
       <div className="relative overflow-hidden w-full">
         {/* Background with Overlay */}
         <div
-          style={{ backgroundImage: `url(${bg})` }}
+          style={{ backgroundImage: `url("https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?w=1200&h=700&fit=crop")` }}
           className="relative bg-cover bg-center w-full min-h-[50vh] sm:min-h-[60vh] lg:min-h-[70vh] rounded-lg sm:rounded-xl lg:rounded-2xl overflow-hidden"
         >
           {/* Animated Gradient Overlay */}
@@ -67,8 +73,8 @@ const Hero = () => {
                 <span className="text-xs sm:text-sm font-bold">{slides[currentSlide].badge}</span>
               </div>
               <div className="flex items-center gap-1 sm:gap-2 bg-green-600/90 backdrop-blur-sm px-3 sm:px-4 py-1 sm:py-2 rounded-full shadow-lg">
-                <FaClock className="text-xs sm:text-sm" />
-                <span className="text-xs sm:text-sm font-bold">Limited Offer</span>
+                <FaStar className="text-xs sm:text-sm" />
+                <span className="text-xs sm:text-sm font-bold">Top Brands</span>
               </div>
             </div>
 
@@ -78,7 +84,7 @@ const Hero = () => {
                 <span className="text-lg sm:text-xl lg:text-2xl font-bold text-yellow-400 animate-pulse">
                   {slides[currentSlide].discount}
                 </span>
-                <span className="text-white text-sm sm:text-base lg:text-lg">On All Products</span>
+                <span className="text-white text-sm sm:text-base lg:text-lg">Selected Categories</span>
               </div>
             </div>
 
@@ -104,29 +110,19 @@ const Hero = () => {
               </button>
               
               <button className="group border border-white/30 hover:border-white bg-white/10 backdrop-blur-sm hover:bg-white/20 text-white px-4 sm:px-6 lg:px-8 py-3 sm:py-4 rounded-xl sm:rounded-2xl font-semibold text-sm sm:text-base lg:text-lg transition-all duration-500 transform hover:scale-105 w-full sm:w-auto">
-                Learn More
+                View Deals
               </button>
             </div>
 
-            {/* Features */}
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3 sm:gap-4 lg:gap-6 mt-6 sm:mt-8 w-full">
+            {/* Features - Updated to match your categories */}
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4 lg:gap-6 mt-6 sm:mt-8 w-full">
               <div className="flex items-center gap-2 sm:gap-3 bg-white/10 backdrop-blur-sm p-3 sm:p-4 rounded-xl sm:rounded-2xl border border-white/20">
-                <div className="w-8 h-8 sm:w-10 sm:h-10 lg:w-12 lg:h-12 bg-green-500 rounded-full flex items-center justify-center flex-shrink-0">
-                  <FaShoppingBag className="text-white text-sm sm:text-base lg:text-lg" />
+                <div className="w-8 h-8 sm:w-10 sm:h-10 lg:w-12 lg:h-12 bg-pink-500 rounded-full flex items-center justify-center flex-shrink-0">
+                  <FaStar className="text-white text-sm sm:text-base lg:text-lg" />
                 </div>
                 <div className="min-w-0">
-                  <p className="font-semibold text-sm sm:text-base">Free Shipping</p>
-                  <p className="text-xs sm:text-sm text-gray-300">On orders over $50</p>
-                </div>
-              </div>
-              
-              <div className="flex items-center gap-2 sm:gap-3 bg-white/10 backdrop-blur-sm p-3 sm:p-4 rounded-xl sm:rounded-2xl border border-white/20">
-                <div className="w-8 h-8 sm:w-10 sm:h-10 lg:w-12 lg:h-12 bg-blue-500 rounded-full flex items-center justify-center flex-shrink-0">
-                  <FaClock className="text-white text-sm sm:text-base lg:text-lg" />
-                </div>
-                <div className="min-w-0">
-                  <p className="font-semibold text-sm sm:text-base">24/7 Support</p>
-                  <p className="text-xs sm:text-sm text-gray-300">Always here to help</p>
+                  <p className="font-semibold text-sm sm:text-base">Beauty</p>
+                  <p className="text-xs sm:text-sm text-gray-300">Premium Cosmetics</p>
                 </div>
               </div>
               
@@ -135,8 +131,28 @@ const Hero = () => {
                   <FaTag className="text-white text-sm sm:text-base lg:text-lg" />
                 </div>
                 <div className="min-w-0">
-                  <p className="font-semibold text-sm sm:text-base">Best Prices</p>
-                  <p className="text-xs sm:text-sm text-gray-300">Guaranteed savings</p>
+                  <p className="font-semibold text-sm sm:text-base">Fragrances</p>
+                  <p className="text-xs sm:text-sm text-gray-300">Luxury Brands</p>
+                </div>
+              </div>
+              
+              <div className="flex items-center gap-2 sm:gap-3 bg-white/10 backdrop-blur-sm p-3 sm:p-4 rounded-xl sm:rounded-2xl border border-white/20">
+                <div className="w-8 h-8 sm:w-10 sm:h-10 lg:w-12 lg:h-12 bg-green-500 rounded-full flex items-center justify-center flex-shrink-0">
+                  <FaShoppingBag className="text-white text-sm sm:text-base lg:text-lg" />
+                </div>
+                <div className="min-w-0">
+                  <p className="font-semibold text-sm sm:text-base">Groceries</p>
+                  <p className="text-xs sm:text-sm text-gray-300">Fresh & Organic</p>
+                </div>
+              </div>
+
+              <div className="flex items-center gap-2 sm:gap-3 bg-white/10 backdrop-blur-sm p-3 sm:p-4 rounded-xl sm:rounded-2xl border border-white/20">
+                <div className="w-8 h-8 sm:w-10 sm:h-10 lg:w-12 lg:h-12 bg-blue-500 rounded-full flex items-center justify-center flex-shrink-0">
+                  <FaShippingFast className="text-white text-sm sm:text-base lg:text-lg" />
+                </div>
+                <div className="min-w-0">
+                  <p className="font-semibold text-sm sm:text-base">Home & Kitchen</p>
+                  <p className="text-xs sm:text-sm text-gray-300">Quality Tools</p>
                 </div>
               </div>
             </div>
@@ -157,11 +173,11 @@ const Hero = () => {
             ))}
           </div>
 
-          {/* Countdown Timer - Hidden on mobile, visible on larger screens */}
+          {/* Countdown Timer */}
           <div className="absolute top-4 right-4 sm:top-6 sm:right-6 lg:top-8 lg:right-8 xl:top-10 xl:right-10">
             <div className="bg-gradient-to-r from-green-500/20 to-blue-500/20 backdrop-blur-sm p-3 sm:p-4 lg:p-6 rounded-lg sm:rounded-xl lg:rounded-2xl border border-white/20">
               <div className="text-center">
-                <div className="text-sm sm:text-base lg:text-lg font-bold text-white">Ends In</div>
+                <div className="text-sm sm:text-base lg:text-lg font-bold text-white">Sale Ends</div>
                 <div className="text-yellow-400 text-base sm:text-lg lg:text-xl xl:text-2xl font-bold mt-1 sm:mt-2">24:59:30</div>
               </div>
             </div>
